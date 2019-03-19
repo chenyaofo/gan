@@ -1,0 +1,54 @@
+
+strategy {
+    epochs: 5000
+}
+
+generator {
+    input_size: 1
+    hidden_size: 5
+    output_size: 1
+
+    n_steps: 20
+
+}
+
+discriminator {
+    input_size: 4
+    hidden_size: 10
+    output_size: 1
+
+    n_steps: 20
+}
+
+real_data {
+    sample_size: [500,]
+    distribution {
+        mean: 4.0
+        std: 1.25
+    }
+}
+
+fake_data {
+    sample_size: [500,1]
+    distribution {
+        low: 0.0
+        high: 1.0
+    }
+}
+
+optimizer {
+    generator{
+        learning_rate = 0.001
+        momentum = 0.9
+        dampening = 0
+        weight_decay = 0.0001
+        nesterov = true
+    }
+    discriminator{
+        learning_rate = 0.001
+        momentum = 0.9
+        dampening = 0
+        weight_decay = 0.0001
+        nesterov = true
+    }
+}
